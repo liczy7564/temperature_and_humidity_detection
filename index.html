@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>溫濕度監控</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── 頂部：即時數值 ── -->
+<header>
+  <div class="brand">🌿 環境監控</div>
+  <div class="current-cards">
+    <div class="card temp-card">
+      <span class="label">目前溫度</span>
+      <span class="val" id="cur-temp-val">—</span>
+      <span class="unit">°C</span>
+    </div>
+    <div class="divider"></div>
+    <div class="card humi-card">
+      <span class="label">目前濕度</span>
+      <span class="val" id="cur-humi-val">—</span>
+      <span class="unit">%</span>
+    </div>
+  </div>
+  <div class="last-update" id="last-update">最後更新：—</div>
+</header>
+
+<!-- ── 控制列 ── -->
+<section class="controls">
+  <div class="btn-row">
+    <button class="btn active" data-metric="both">溫 &amp; 濕度</button>
+    <button class="btn" data-metric="temp">溫度</button>
+    <button class="btn" data-metric="humi">濕度</button>
+  </div>
+  <div class="btn-row">
+    <button class="btn active" data-time="today">今天</button>
+    <button class="btn" data-time="week">本週</button>
+    <button class="btn" data-time="month">本月</button>
+  </div>
+  <div class="btn-row">
+    <button class="btn active" data-chart="line">折線圖</button>
+    <button class="btn" data-chart="bar">直方圖</button>
+    <button class="btn" data-chart="table">資料表</button>
+  </div>
+</section>
+
+<!-- ── 統計摘要 ── -->
+<section class="stats">
+  <div class="stat-box">
+    <span class="stat-label">平均溫度</span>
+    <span class="stat-val" id="avg-temp">—</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">最高溫度</span>
+    <span class="stat-val high" id="max-temp">—</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">最低溫度</span>
+    <span class="stat-val low" id="min-temp">—</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">平均濕度</span>
+    <span class="stat-val" id="avg-humi">—</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">最高濕度</span>
+    <span class="stat-val high" id="max-humi">—</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">最低濕度</span>
+    <span class="stat-val low" id="min-humi">—</span>
+  </div>
+</section>
+
+<!-- ── 圖表 / 資料表 ── -->
+<section class="chart-area">
+  <div id="canvas-wrap">
+    <canvas id="main-chart"></canvas>
+  </div>
+  <div id="table-wrap" style="display:none">
+    <table id="data-table">
+      <thead>
+        <tr><th>日期</th><th>時間</th><th>溫度 (°C)</th><th>濕度 (%)</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
