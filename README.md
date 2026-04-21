@@ -1,1 +1,1 @@
-# -temperature_and_humidity_detection
+# temperature_and_humidity_detection
